@@ -1,0 +1,33 @@
+#!/bin/bash
+###
+#
+# example input text:
+
+# You don't know where you are, or the site of your car, and
+# your tie is askew and you haven't a clue of the time of
+# the day or of what people say or the fact that they stare
+# at your socks (not a pair) and decide it's a fad, or else
+# in your eyes, till at last they conclude from your general
+# mood, you'll be mad from right now till you're hoary.
+# But the torture is done and it's now for the fun and the paper
+# that's white and the words that are right, for you've
+# worked up a new s.f. story.
+
+##
+#
+# example output | tail -10
+# 18 with
+# 19 in
+# 22 is
+# 25 of
+# 27 that
+# 30 your
+# 40 you
+# 46 the
+# 48 a
+# 50 and
+
+INPUT="path/to/inputfile.txt"
+FOO='cat $INPUT'
+rm wl.dat; for i in $FOO; do echo $i >> wl.dat; sort wl.dat |uniq -c |sort -n>wls.dat; done
+tail -15 wls.dat
