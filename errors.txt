@@ -1,0 +1,4 @@
+  1  No Key specified
+ 10	Attempt to create existing key
+ 11	Key does not exist
+100	No value given to update.
