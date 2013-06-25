@@ -29,5 +29,5 @@
 
 INPUT="path/to/inputfile.txt"
 FOO='cat $INPUT'
-rm wl.dat; for i in $FOO; do echo $i >> wl.dat; sort wl.dat |uniq -c |sort -n>wls.dat; done
+rm wl.dat; for i in $FOO; do echo $i >> wl.dat; done; sort wl.dat |uniq -c |sort -n>wls.dat;
 tail -15 wls.dat
