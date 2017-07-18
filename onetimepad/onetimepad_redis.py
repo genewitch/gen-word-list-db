@@ -1,7 +1,10 @@
 import binascii
 import redis   #easy_install redis / pip install redis --user
 
-#minwlength=5
+
+#todo:
+	#minwlength=5
+
 maxwlength=7
 wlength=0
 wloopvar=0
@@ -16,12 +19,12 @@ r = redis.StrictRedis(host='localhost', port=6379, db=0)
 key="work"
 
 def checkdict(word):
-	return r.sismember(key, word)
+	return r.sismember(key, word)		#redis sets can determine if a word is in the dictionary quite fast
 
-def hexint(b):
-	return int(binascii.hexlify(b), 16)
+def hexint(b):					#may be removed
+	return int(binascii.hexlify(b), 16)	
 
-def checkascii(char):
+def checkascii(char):				#may be removed, since (var >= "a" and var <= "z") should work too
 	check = hexint(char)
 #	If you want caps too switch the next two lines
 #	if ((check >= 65) and (check <=90)) or ((check >= 97) and (check <=122)):
@@ -36,11 +39,15 @@ print checkdict("ASJKDH")
 print checkdict("abroad")
 print "should read:\n False\n True\n redis test complete"
 
+# I use `time python arbitraryrandom.py > /tmp/rnd/rdrand.out`
+# with `ln -s /tmp/rnd/rdrand.out ~/sts/r`
+# as NIST's STS software makes you type the filename every run.
+# "r" is much shorter than the /tmp path.
 with open("/home/genewitch/sts/r", 'rb') as f:
 	while True:
-		bytte = f.read(1)
+		bytte = f.read(1)	# reads 8 bits as a byte.
 
-		if bytte == '' :
+		if bytte == '' : 	# senses EOF
 			f.close()
 			break
 
